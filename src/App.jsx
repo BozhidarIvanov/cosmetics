@@ -1,48 +1,52 @@
-import React from 'react'
+import React from "react";
 
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import CarouselItems from './components/co/CarouselItems'
+import CarouselItems from "./components/co/CarouselItems";
 
-import { Footer } from './components/footer/footer'
-import { Contact } from './components/contact/Contact'
-import { Customer } from './components/customer/Customer'
-import { About } from './components/about/About'
-import { Product } from './components/product/Product'
+import { Route, Router, Routes } from "react-router-dom";
 
-import { Header } from './components/header/Header'
-import Banner from './components/banner/Banner'
+import { Footer } from "./components/footer/footer";
+import { Contact } from "./components/contact/Contact";
+import { Customer } from "./components/customer/Customer";
+import { About } from "./components/about/About";
+import { Product } from "./components/product/Product";
+
+import { Header } from "./components/header/Header";
+import Banner from "./components/banner/Banner";
+import Login from "./components/login/Login";
 
 function App() {
   return (
     <div>
-      {/* Comment delete comment */}
-      {/* Header */}
       <Header />
-      <Banner />
+     
 
-      {/* Banner */}
+     
+        <Routes>
+          <Route path="/" element={ <Banner />}></Route>
+          <Route path="/products" element={ <Product />}></Route>
+          <Route path="/about" element={ <About />}></Route>
+          <Route path="/customer" element={ <Customer />}></Route>
+          <Route path="/contact" element={  <Contact />}></Route>
+          <Route path="/login" element={ <Login/> } ></Route>
 
-      {/* Product Section */}
-      {/* ... (Product section components) */}
-      <Product />
-      {/* About Section */}
-      <About />
-      {/* ... (About section components) */}
 
-      {/* Customer Section */}
-      <Customer />
-      {/* ... (Customer section components) */}
 
-      {/* Contact Section */}
-      <Contact />
-      {/* ... (Contact section components) */}
+        </Routes>
+     
 
-      {/* Footer Section */}
+     
+
+      
+
+      
+
+     
+
       <Footer />
-      {/* ... (Footer section components) */}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
