@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beautiflie</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Open+Sans:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+</head>
+   <body>
+      <!-- header section start -->
+  
+      <!-- header section end -->
+      <!-- banner section start -->
+    
+      <!-- banner section end -->
+      <!-- product section start -->
+     
+      <!-- product section end -->
+      <!-- about section start -->
+    
+      <!-- about section end -->
+      <!-- customer section start -->
+      
+      <!-- customer section end -->
+      <!-- contact section start -->
+     
+      <!-- contact section end -->
+      <!-- footer section start -->
+
+      <!-- footer section end -->
+      <!-- copyright section start -->
+   
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+  
+       <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+    // Remove jQuery and replace with vanilla JavaScript for Bootstrap carousel control
+    document.addEventListener("DOMContentLoaded", function () {
+      var carousel = document.querySelector("#carouselExampleIndicators");
+      var carouselInstance = new bootstrap.Carousel(carousel);
+
+      var prevButton = document.querySelector(".carousel-control-prev");
+      var nextButton = document.querySelector(".carousel-control-next");
+
+      prevButton.addEventListener("click", function () {
+        carouselInstance.prev();
+      });
+
+      nextButton.addEventListener("click", function () {
+        carouselInstance.next();
+      });
+    });
+  </script>
+   </body>
+</html>
