@@ -16,7 +16,7 @@ import Banner from './components/banner/Banner'
 function App() {
   return (
     <div>
-      {/* Comment */}
+      {/* Comment delete comment */}
       {/* Header */}
       <Header />
       <Banner />
