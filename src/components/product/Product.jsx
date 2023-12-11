@@ -1,9 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Container, Row, Col, Button, Image } from 'react-bootstrap';
+import { Container, Row, Col, Button, Image, Modal } from 'react-bootstrap';
 
 const Product = () => {
   const { cart, addToCart } = useContext(CartContext);
+  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleSeeMoreClick = (productName, price) => {
+    // Set the selected product details to be displayed in the modal
+    const productDetails = {
+      name: productName,
+      price: price,
+      // Add more details here if needed
+    };
+
+    setSelectedProduct(productDetails);
+    setShowModal(true); // Show the modal
+  };
 
   const generateUniqueId = () => {
     const timestamp = Date.now().toString(36);
@@ -77,7 +91,29 @@ const Product = () => {
         <Row>
           <Col>
             <div className="seemore_bt">
-              <Button variant="primary">See More</Button>
+            <Button variant="primary" onClick={() => handleSeeMoreClick('Beauty Brush', 30)}>
+        See More
+      </Button>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedProduct && selectedProduct.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedProduct && (
+            <>
+              <p>Price: ${selectedProduct.price}</p>
+              {/* Add more details here */}
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Close
+          </Button>
+          {/* Add any other buttons or actions needed */}
+        </Modal.Footer>
+      </Modal>
             </div>
           </Col>
         </Row>
