@@ -2,6 +2,7 @@ import { Navbar, Nav, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../../context/authContex';
+import CartIcon from './CartIcon';
 
 export const Header = () => {
   const { isAuth, dataEmail } = useContext(AuthContext);
@@ -43,7 +44,7 @@ export const Header = () => {
             )}
 
             <Nav.Link as={Link} to="/cart">
-              <Image src="images/bag-icon.png" />
+              <CartIcon />
             </Nav.Link>
             <Nav.Link as={Link} to="/search">
               <Image src="images/search-icon.png" />
