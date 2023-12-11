@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Container, Row, Col, Button, Image, Modal } from 'react-bootstrap';
 
@@ -91,29 +91,37 @@ const Product = () => {
         <Row>
           <Col>
             <div className="seemore_bt">
-            <Button variant="primary" onClick={() => handleSeeMoreClick('Beauty Brush', 30)}>
-        See More
-      </Button>
+              <Button
+                variant="primary"
+                onClick={() => handleSeeMoreClick('Beauty Brush', 30)}
+              >
+                See More
+              </Button>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>{selectedProduct && selectedProduct.name}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedProduct && (
-            <>
-              <p>Price: ${selectedProduct.price}</p>
-              {/* Add more details here */}
-            </>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-          {/* Add any other buttons or actions needed */}
-        </Modal.Footer>
-      </Modal>
+              <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    {selectedProduct && selectedProduct.name}
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {selectedProduct && (
+                    <>
+                      <p>Price: ${selectedProduct.price}</p>
+                      {/* Add more details here */}
+                    </>
+                  )}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </Button>
+                  {/* Add any other buttons or actions needed */}
+                </Modal.Footer>
+              </Modal>
             </div>
           </Col>
         </Row>

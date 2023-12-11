@@ -1,7 +1,7 @@
 import { Navbar, Nav, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import AuthContext from '../../context/authContex';
+import AuthContext from '../../context/authContex.jsx';
 import CartIcon from './CartIcon';
 
 export const Header = () => {

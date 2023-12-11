@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import AuthContext from '../../context/authContex';
+import AuthContext from '../../context/authContex.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
