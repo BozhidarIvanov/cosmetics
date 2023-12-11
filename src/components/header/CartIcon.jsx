@@ -1,22 +1,21 @@
 import React, { useContext } from 'react';
-import { Image } from 'react-bootstrap';
-import { CartContext } from '../../context/CartContext'; // Import your CartContext
+import { CartContext } from '../../context/CartContext';
+import { BiCart, BiCartAlt } from 'react-icons/bi';
 
 const CartIcon = () => {
   const { cart } = useContext(CartContext);
-
-  // Calculate the number of items in the cart
   const cartItemCount = cart.length;
-
   return (
     <div>
       {cartItemCount > 0 ? (
         <div>
-          <Image src="images/filled-cart.svg" alt="Filled Cart" />
+          <BiCartAlt size={24} />
           <span>{cartItemCount}</span>
         </div>
       ) : (
-        <Image src="images/empty-cart.svg" alt="Empty Cart" />
+        <div>
+          <BiCart size={24} /> {/* Empty cart icon */}
+        </div>
       )}
     </div>
   );

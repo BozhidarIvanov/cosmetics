@@ -16,6 +16,7 @@ import AuthContext from './context/authContex';
 import { useNavigate } from 'react-router-dom';
 import loginRequest from './service/loginRequest';
 import { CartProvider } from './context/CartContext';
+import Cart from './components/cart/Cart';
 
 function App() {
   let [isAuth, setIsAuth] = useState(false);
@@ -55,6 +56,7 @@ function App() {
             <Route path="/customer" element={<Customer />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/login" element={<Login />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
           </Routes>
 
           <Footer />
