@@ -13,7 +13,10 @@ export const CartProvider = (props) => {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart([...cart, product]);
+    setCart((prevCart) => {
+      const updatedCart = Array.isArray(prevCart) ? prevCart : []; // Ensure prevCart is an array
+      return [...updatedCart, product];
+    });
   };
 
   const removeFromCart = (productId) => {
@@ -22,7 +25,13 @@ export const CartProvider = (props) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+      }}
+    >
       {props.children}
     </CartContext.Provider>
   );

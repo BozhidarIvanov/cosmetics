@@ -5,10 +5,16 @@ import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 const Product = () => {
   const { cart, addToCart } = useContext(CartContext);
 
+  const generateUniqueId = () => {
+    const timestamp = Date.now().toString(36);
+    const randomString = Math.random().toString(36).substring(2, 8);
+    return `${timestamp}-${randomString}`;
+  };
+
   const handleBuyNowClick = (productName, price) => {
     // Create a new product object
     const newProduct = {
-      id: cart.length + 1,
+      id: generateUniqueId(),
       name: productName,
       price: price,
     };
@@ -45,6 +51,24 @@ const Product = () => {
                   Buy Now
                 </Button>
                 <h3 className="price_text">Price $30</h3>
+              </div>
+            </div>
+          </Col>
+          <Col lg={3} sm={6}>
+            <div className="product2_box">
+              <h4 className="bursh2_text">Beauty Brush</h4>
+              <p className="lorem2_text">
+                incididunt ut labore et dolore magna aliqua. Ut enim
+              </p>
+              <Image src="images/img-2.png" className="image_2" />
+              <div className="btn2_main">
+                <Button
+                  variant="primary"
+                  onClick={() => handleBuyNowClick('Beauty Set', 30)}
+                >
+                  Buy Now
+                </Button>
+                <h3 className="price_text2">Price $10</h3>
               </div>
             </div>
           </Col>

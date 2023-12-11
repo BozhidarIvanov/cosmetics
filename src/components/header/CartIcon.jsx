@@ -5,6 +5,7 @@ import { BiCart, BiCartAlt } from 'react-icons/bi';
 const CartIcon = () => {
   const { cart } = useContext(CartContext);
   const cartItemCount = cart.length;
+
   return (
     <div>
       {cartItemCount > 0 ? (
