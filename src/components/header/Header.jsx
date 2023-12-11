@@ -1,7 +1,12 @@
-import { Navbar, Nav, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Navbar, Nav, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../context/authContex';
 
 export const Header = () => {
+  const { isAuth, dataEmail } = useContext(AuthContext);
+  console.log('3 ' + dataEmail);
+  console.log('test ' + isAuth);
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -11,16 +16,32 @@ export const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/products">Products</Nav.Link>
-            <Nav.Link as={Link} to="/about">About</Nav.Link>
-            <Nav.Link as={Link} to="/client">Client</Nav.Link>
-            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link as={Link} to="/login">
-              <Image src="images/user-icon.png" />
+            <Nav.Link as={Link} to="/">
+              Home
             </Nav.Link>
+            <Nav.Link as={Link} to="/products">
+              Products
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to="/client">
+              Client
+            </Nav.Link>
+            <Nav.Link as={Link} to="/contact">
+              Contact
+            </Nav.Link>
+          </Nav>
+
+          <Nav>
+            {!isAuth ? (
+              <Nav.Link as={Link} to="/login">
+                <Image src="images/user-icon.png" />
+              </Nav.Link>
+            ) : (
+              <h4>{dataEmail}</h4>
+            )}
+
             <Nav.Link as={Link} to="/cart">
               <Image src="images/bag-icon.png" />
             </Nav.Link>
@@ -31,5 +52,5 @@ export const Header = () => {
         </Navbar.Collapse>
       </Navbar>
     </>
-  )
-}
+  );
+};
