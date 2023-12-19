@@ -97,7 +97,7 @@ const Product = ({ products, searchQuery }) => {
                   <Button variant="secondary" onClick={() => setShowModal(false)}>
                     Close
                   </Button>
-                  {/* Add other buttons or actions needed */}
+                  {/* Add other buttonsss or actions needed */}
                 </Modal.Footer>
               </Modal>
             </div>
