@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loginHandler } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,6 +26,7 @@ const Login = () => {
 
     console.log(result + '443');
     // Logic for form submission
+    navigate("/")
   };
 
   return (

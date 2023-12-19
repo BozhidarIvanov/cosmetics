@@ -1,23 +1,25 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Container, Row, Col, Button, Image, Modal } from 'react-bootstrap';
 
-const Product = () => {
-  const { cart, addToCart } = useContext(CartContext);
-  const [showModal, setShowModal] = useState(false); // State to manage modal visibility
+const Product = ({ products, searchQuery }) => {
+  const { addToCart } = useContext(CartContext);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleSeeMoreClick = (productName, price) => {
-    // Set the selected product details to be displayed in the modal
-    const productDetails = {
-      name: productName,
-      price: price,
-      // Add more details here if needed
-    };
-
-    setSelectedProduct(productDetails);
-    setShowModal(true); // Show the modal
-  };
+  useEffect(() => {
+    // Filter products based on searchQuery
+    if (searchQuery) {
+      const filtered = products.filter(product =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    } else {
+      // Reset to original products if search query is empty
+      setFilteredProducts(products);
+    }
+  }, [searchQuery, products]);
 
   const generateUniqueId = () => {
     const timestamp = Date.now().toString(36);
@@ -25,16 +27,18 @@ const Product = () => {
     return `${timestamp}-${randomString}`;
   };
 
-  const handleBuyNowClick = (productName, price) => {
-    // Create a new product object
+  const handleBuyNowClick = (product) => {
     const newProduct = {
       id: generateUniqueId(),
-      name: productName,
-      price: price,
+      name: product.name,
+      price: product.price,
     };
-
-    // Add the product to the cart using the context function
     addToCart(newProduct);
+  };
+
+  const handleSeeMoreClick = (product) => {
+    setSelectedProduct(product);
+    setShowModal(true);
   };
 
   return (
@@ -50,54 +54,31 @@ const Product = () => {
           </Col>
         </Row>
         <Row>
-          <Col lg={3} sm={6}>
-            <div className="product_box">
-              <h4 className="bursh_text">Beauty Brush</h4>
-              <p className="lorem_text">
-                incididunt ut labore et dolore magna aliqua. Ut enim
-              </p>
-              <Image src="images/img-1.png" className="image_1" />
-              <div className="btn_main">
-                <Button
-                  variant="primary"
-                  onClick={() => handleBuyNowClick('Beauty Brush', 30)}
-                >
-                  Buy Now
+          {filteredProducts.map((product, index) => (
+            <Col lg={3} sm={6} key={index}>
+              <div className="product_box">
+                <h4 className="bursh_text">{product.name}</h4>
+                <p className="lorem_text">{product.description}</p>
+                <Image src={product.image} className={`image_${index}`} />
+                <div className="btn_main">
+                  <Button
+                    variant="primary"
+                    onClick={() => handleBuyNowClick(product)}
+                  >
+                    Buy Now
+                  </Button>
+                  <h3 className="price_text">Price ${product.price}</h3>
+                </div>
+                <Button variant="outline-secondary" onClick={() => handleSeeMoreClick(product)}>
+                  See More
                 </Button>
-                <h3 className="price_text">Price $30</h3>
               </div>
-            </div>
-          </Col>
-          <Col lg={3} sm={6}>
-            <div className="product2_box">
-              <h4 className="bursh2_text">Beauty Brush</h4>
-              <p className="lorem2_text">
-                incididunt ut labore et dolore magna aliqua. Ut enim
-              </p>
-              <Image src="images/img-2.png" className="image_2" />
-              <div className="btn2_main">
-                <Button
-                  variant="primary"
-                  onClick={() => handleBuyNowClick('Beauty Set', 30)}
-                >
-                  Buy Now
-                </Button>
-                <h3 className="price_text2">Price $10</h3>
-              </div>
-            </div>
-          </Col>
-          {/* Repeat this structure for other product boxes */}
+            </Col>
+          ))}
         </Row>
         <Row>
           <Col>
             <div className="seemore_bt">
-              <Button
-                variant="primary"
-                onClick={() => handleSeeMoreClick('Beauty Brush', 30)}
-              >
-                See More
-              </Button>
-
               <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                   <Modal.Title>
@@ -113,13 +94,10 @@ const Product = () => {
                   )}
                 </Modal.Body>
                 <Modal.Footer>
-                  <Button
-                    variant="secondary"
-                    onClick={() => setShowModal(false)}
-                  >
+                  <Button variant="secondary" onClick={() => setShowModal(false)}>
                     Close
                   </Button>
-                  {/* Add any other buttons or actions needed */}
+                  {/* Add other buttons or actions needed */}
                 </Modal.Footer>
               </Modal>
             </div>

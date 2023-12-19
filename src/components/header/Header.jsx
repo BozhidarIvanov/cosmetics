@@ -1,13 +1,20 @@
-import { Navbar, Nav, Image } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Navbar, Nav, Image, Form, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
 import AuthContext from '../../context/authContex.jsx';
 import CartIcon from './CartIcon';
 
-export const Header = () => {
+export const Header = ({ setSearchQuery }) => {
   const { isAuth, dataEmail } = useContext(AuthContext);
-  console.log('3 ' + dataEmail);
-  console.log('test ' + isAuth);
+  const [showSearch, setShowSearch] = useState(false); // State to manage search field visibility
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const toggleSearch = () => {
+    setShowSearch(!showSearch); // Toggles the visibility of the search field
+  };
+
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -46,12 +53,27 @@ export const Header = () => {
             <Nav.Link as={Link} to="/cart">
               <CartIcon />
             </Nav.Link>
-            <Nav.Link as={Link} to="/search">
+            <Nav.Link onClick={toggleSearch}>
               <Image src="images/search-icon.png" />
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
+      {showSearch && ( // Render the search field if showSearch is true
+  <div style={{ padding: '10px', backgroundColor: '#f0f0f0' }}>
+    <Form inline="true">
+    <FormControl
+              type="text"
+              placeholder="Search"
+              className="mr-sm-2"
+              onChange={handleSearch}
+            />
+      <Button variant="outline-success">Search</Button>
+    </Form>
+  </div>
+)}
+
     </>
   );
 };
